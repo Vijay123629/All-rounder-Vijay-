@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ludo Pro Cheat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; }
+        .board { width: 320px; height: 320px; background: #fff; margin: 20px auto; border: 10px solid #444; position: relative; }
+        .btn-container { margin-top: 30px; }
+        /* असली बटन जो सबको दिखेगा */
+        .dice-btn { 
+            padding: 20px 40px; font-size: 24px; font-weight: bold;
+            background: linear-gradient(#e74c3c, #c0392b); color: white; 
+            border: none; border-radius: 50px; box-shadow: 0 5px #999;
+        }
+        .dice-btn:active { box-shadow: 0 2px #666; transform: translateY(3px); }
+        #res { font-size: 60px; margin: 20px; color: #f1c40f; }
+        /* गुप्त सेटिंग: स्क्रीन के कोने में एक छोटा सा हिस्सा */
+        #secret-trigger { 
+            position: absolute; top: 0; left: 0; width: 30px; height: 30px; opacity: 0; 
+        }
+    </style>
+</head>
+<body>
+    <h2>LUDO SUPREME</h2>
+    <div id="status">Red's Turn</div>
+    <div class="board">
+        <div id="secret-trigger" onclick="activateCheat()"></div>
+    </div>
+
+    <div id="res">🎲</div>
+    
+    <div class="btn-container">
+        <button class="dice-btn" onclick="roll()">ROLL DICE</button>
+    </div>
+
+    <script>
+        let cheatActive = false;
+        let turn = 0;
+        let players = ["Red", "Green", "Blue", "Yellow"];
+
+        function activateCheat() {
+            cheatActive = true; 
+            alert("System Optimized!"); // यह सिर्फ आपको पता चलेगा
+        }
+
+        function roll() {
+            let result;
+            if (cheatActive && players[turn] === "Red") {
+                result = 6; // रेड को हमेशा 6
+                cheatActive = false; // एक बार के बाद बंद ताकि शक न हो
+            } else {
+                result = Math.floor(Math.random() * 6) + 1;
+            }
+
+            document.getElementById("res").innerText = result;
+            document.getElementById("status").innerText = players[turn] + " rolled " + result;
+            
+            // पासे की आवाज़
+            let audio = new Audio('https://www.soundjay.com/board-games/sounds/dice-roll-1.mp3');
+            audio.play();
+
+            turn = (turn + 1) % 4;
+        }
+    </script>
+</body>
+</html>
