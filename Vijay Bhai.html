@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Rounder Vijay</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f3; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .header { background: #333; color: white; width: 100%; text-align: center; padding: 20px 0; font-size: 24px; font-weight: bold; }
+        .container { max-width: 500px; width: 90%; background: white; margin: 20px 0; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .desc-box { background: #f9f9f9; border-left: 5px solid #007bff; padding: 15px; margin-bottom: 20px; font-size: 14px; color: #555; line-height: 1.6; }
+        h3 { color: #007bff; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        input { width: 95%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #218838; }
+        .yt-btn { background: #ff0000; margin-top: 10px; font-weight: bold; }
+        .result { margin-top: 15px; font-size: 18px; font-weight: bold; color: #333; text-align: center; }
+        .footer { margin-top: 20px; font-size: 12px; color: #888; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="header">🏆 All Rounder Vijay</div>
+
+<div class="container">
+    <div class="desc-box">
+        <strong>About This Site:</strong><br>
+        स्वागत है! यह वेबसाइट All Rounder Vijay द्वारा बनाई गई है। यहाँ आप अपनी परीक्षा का प्रतिशत निकाल सकते हैं, अपनी सही उम्र जान सकते हैं और मेरे YouTube चैनल <strong>VJY_OP</strong> से जुड़ सकते हैं।
+    </div>
+
+    <h3>📊 Exam Percent Calculator</h3>
+    <input type="number" id="total" placeholder="Total Marks (पूर्णांक)">
+    <input type="number" id="obt" placeholder="Obtained Marks (प्राप्तांक)">
+    <button onclick="calcPer()">Calculate Percentage</button>
+    <div id="perRes" class="result"></div>
+
+    <h3>📅 Age Calculator</h3>
+    <p style="font-size: 13px; color: #666;">अपनी जन्मतिथि चुनें:</p>
+    <input type="date" id="dob">
+    <button onclick="calcAge()" style="background: #007bff;">Check My Age</button>
+    <div id="ageRes" class="result"></div>
+
+    <h3>📺 My YouTube Channel</h3>
+    <p style="font-size: 14px;">लेटेस्ट वीडियो देखने के लिए यहाँ क्लिक करें:</p>
+    <button class="yt-btn" onclick="window.location.href='https://youtube.com/@vjy_op?si=K-qHKEzvT2RwBnfM'">Subscribe VJY_OP 🚀</button>
+</div>
+
+<div class="footer">Created with ❤️ by Vijay</div>
+
+<script>
+    function calcPer() {
+        let t = document.getElementById('total').value;
+        let o = document.getElementById('obt').value;
+        if(t > 0 && o >= 0) {
+            let p = (o / t) * 100;
+            document.getElementById('perRes').innerHTML = "Result: " + p.toFixed(2) + "%";
+        } else {
+            alert("कृपया सही अंक भरें!");
+        }
+    }
+
+    function calcAge() {
+        let birthValue = document.getElementById('dob').value;
+        if(birthValue) {
+            let birth = new Date(birthValue);
+            let today = new Date();
+            let age = today.getFullYear() - birth.getFullYear();
+            let m = today.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            document.getElementById('ageRes').innerHTML = "आप अभी " + age + " साल के हैं।";
+        } else {
+            alert("कृपया जन्मतिथि चुनें!");
+        }
+    }
+</script>
+
+</body>
+</html>
